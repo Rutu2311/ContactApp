@@ -1,0 +1,33 @@
+.container {
+
+  height: 100vh;
+  .row {
+    height: inherit;
+    padding: 2em;
+    .login_form {
+      .form-control {
+        padding: 0.2em 0.5em;
+      }
+      padding: 2em;
+      .login_header {
+        img {
+          width: 20%;
+        }
+      }
+      .text-danger {
+        font-style: italic;
+      }
+      .btn {
+        width: 50%;
+      }
+    }
+    .vector_img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+<div class="container">
+  <!-- <div
+    *ngIf="LoginError"
+    class="alert alert-dander alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>Invalid Credential</strong> Check you email and password, and try
+    again
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div> -->
+  <div>
+    <h3 *ngIf="LoginError" class="text-danger">Invalid credential</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-6 login_form d-flex flex-column justify-content-center">
+      <div class="login_header">
+        <img
+          src="../../../assets/images/login-icon.png"
+          class="img-fluidrounded mx-auto d-block"
+          alt=""
+        />
+        <h3 class="text-center">Login</h3>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            aria-describedby="emailHelp"
+          />
+          <small
+            *ngIf="loginFormFlag && !loginForm.get('email').valid"
+            class="text-danger"
+            >{{ emailErrorStatus }}</small
+          >
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+          <small
+            class="text-danger"
+            *ngIf="!loginForm.get('password').valid && loginFormFlag"
+            >*Please Enter the password</small
+          >
+        </div>
+        <div class="mb-3 text-center mt-5">
+          <button
+            type="submit"
+            [disabled]="!loginForm.touched"
+            class="btn btn-primary"
+          >
+            Login
+          </button>
+        </div>
+        <div class="mb-3 text-center">
+          <a routerLink="/signup">Don't have an Account?</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 vector_img">
+      <img
+        src="../../../assets/images/vector-image.jpg"
+        class="img-fluid d-block"
+        alt=""
+      />
+    </div>
+  </div>
+</div>

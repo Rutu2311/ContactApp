@@ -1,0 +1,18 @@
+header {
+  padding: 0.2em 1em;
+  background: linear-gradient(rgb(175, 174, 174), #fff);
+}
+hr {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  .contact-form {
+    form {
+      width: 60% !important;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

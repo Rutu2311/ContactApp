@@ -1,0 +1,99 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 vector_img">
+      <img
+        src="../../../assets/images/vector-image2.jpg"
+        class="img-fluid d-block mx-auto"
+        alt=""
+      />
+    </div>
+    <div class="col-md-6 signup_form d-flex flex-column justify-content-center">
+      <div class="signup_header">
+        <img
+          src="../../../assets/images/signup-icon.png"
+          class="img-fluidrounded mx-auto d-block"
+          alt=""
+        />
+        <h3 class="text-center">Register Yourself</h3>
+      </div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input type="text" class="form-control" formControlName="name" />
+          <small
+            class="text-danger"
+            *ngIf="!signupForm.get('name').valid && submitFlag"
+            >*Name is Required</small
+          >
+
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            (keydown)="emailInput()"
+            formControlName="email"
+            aria-describedby="emailHelp"
+          />
+          <small
+            class="text-danger"
+            *ngIf="!signupForm.get('email').valid && submitFlag"
+            >*Enter valid email id</small
+          >
+          <small *ngIf="emailExistFlag" class="text-danger"
+            >*Email already used!!</small
+          >
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+          />
+          <ng-template [ngIf]="!signupForm.get('password').valid && submitFlag">
+            <small class="text-danger">*Password is Required</small>
+          </ng-template>
+        </div>
+        <div class="mb-3">
+          <label for="cpassword" class="form-label">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="cpassword"
+          />
+
+          <ng-template
+            [ngIf]="!signupForm.get('cpassword').valid && submitFlag"
+          >
+            <small class="text-danger"
+              >*Password Conformation is Required</small
+            >
+          </ng-template>
+
+          <small
+            *ngIf="passwordMatchFlag && submitFlag && true"
+            class="text-danger"
+            >*Password not-matched!!</small
+          >
+        </div>
+        <div class="mb-3 text-center mt-4">
+          <button
+            type="submit"
+            [disabled]="signupForm.untouched"
+            class="btn btn-primary"
+          >
+            Signup
+          </button>
+        </div>
+        <div class="mb-3 text-center">
+          <a routerLink="/login">Already have an Account?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--  -->

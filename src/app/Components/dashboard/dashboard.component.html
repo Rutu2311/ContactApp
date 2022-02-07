@@ -1,0 +1,114 @@
+<header>
+  <div class="col-md-12 d-flex justify-content-between align-items-center">
+    <h1 class="text-center mt-2 mb-1">
+      Dashboard -
+      <h2 class="d-inline-block mb-0">Contact Management</h2>
+    </h1>
+    <div class="d-flex justify-content-center align-items-center">
+      <h2 class="mx-4 mb-0">Welcome {{ userName | titlecase }}</h2>
+      <button (click)="userLogout()" class="btn btn-danger">Logout</button>
+    </div>
+  </div>
+</header>
+
+<hr />
+<div class="container">
+  <div
+    class="col-md-12 contact-form mt-2 d-flex flex-column align-items-center justify-content-center"
+  >
+    <h2 class="mui--text-display4">Add New Contact</h2>
+    <form class="mt-2" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="fname"
+              formControlName="fname"
+              placeholder="First Name"
+            />
+            <small
+              class="text-danger"
+              *ngIf="submitFlag && contactForm.get('fname').invalid"
+              >*First name is required</small
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="lname"
+              formControlName="lname"
+              placeholder="Last Name"
+            />
+            <small
+              class="text-danger"
+              *ngIf="submitFlag && contactForm.get('lname').invalid"
+              >*Last name is required</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="mb-3">
+          <input
+            type="phone"
+            class="form-control"
+            id="phone"
+            formControlName="phone"
+            placeholder="Enter contact number"
+          />
+          <small
+            class="text-danger"
+            *ngIf="submitFlag && !contactForm.get('phone').value"
+            >*Contact number is required</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="
+              contactForm.get('phone').value &&
+              contactForm.get('phone').invalid &&
+              submitFlag
+            "
+            >*Enter valid contact number</small
+          >
+        </div>
+        <div class="mb-3">
+          <input
+            type="file"
+            class="form-control"
+            id="image"
+            formControlName="image"
+            placeholder="Upload an image"
+            (change)="imageSubmit($event)"
+          />
+          <small
+            class="text-danger"
+            *ngIf="submitFlag && !contactForm.get('image').value"
+            >*Image is required</small
+          >
+          <small
+            class="text-danger"
+            *ngIf="
+              submitFlag &&
+              !imageTypeErrorStatus &&
+              contactForm.get('image').valid
+            "
+            >*Invalid file format
+          </small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Contact</button>
+    </form>
+  </div>
+  <hr class="mt-4" />
+  <div class="col-md-12 mt-2 display-contact">
+    <h4 class="text-center">List of Contacts</h4>
+    <app-table [userId]="userId"></app-table>
+  </div>
+</div>

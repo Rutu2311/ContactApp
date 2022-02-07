@@ -1,0 +1,110 @@
+<h2 mat-dialog-title>This is a Dialog title</h2>
+
+<form class="mt-2" [formGroup]="editContactForm">
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="fname"
+          formControlName="fname"
+          placeholder="First Name"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            editContactForm.get('fname').touched &&
+            editContactForm.get('fname').invalid
+          "
+          >*First name is required</small
+        >
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="lname"
+          formControlName="lname"
+          placeholder="Last Name"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            editContactForm.get('lname').touched &&
+            editContactForm.get('lname').invalid
+          "
+          >*Last name is required</small
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3">
+      <input
+        type="phone"
+        class="form-control"
+        id="phone"
+        formControlName="phone"
+        placeholder="Enter contact number"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          editContactForm.get('phone').touched &&
+          !editContactForm.get('phone').value
+        "
+        >*Phone number is required</small
+      >
+      <small
+        class="text-danger"
+        *ngIf="
+          editContactForm.get('phone').value &&
+          editContactForm.get('phone').invalid
+        "
+        >*Enter valid phone number</small
+      >
+    </div>
+    <div class="mb-3">
+      <input
+        type="file"
+        class="form-control"
+        id="image"
+        formControlName="image"
+        placeholder="Upload an image"
+        (change)="imageSubmit($event)"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          editContactForm.get('image').touched &&
+          !editContactForm.get('image').value
+        "
+        >*Image is required</small
+      >
+      <small
+        class="text-danger"
+        *ngIf="
+          editContactForm.get('image').value &&
+          editContactForm.get('image').invalid
+        "
+        >*Upload valid file format</small
+      >
+    </div>
+    <div class="displayImage">
+      <h3 class="my-2 fw-bolder">Selected Profile Image :</h3>
+      <img [src]="previewImageSrc" alt="" />
+    </div>
+  </div>
+
+  <button
+    class="btn btn-warning mt-3"
+    mat-dialog-close
+    [disabled]="editContactForm.invalid"
+    (click)="editFromMatDialog()"
+  >
+    Edit Contact
+  </button>
+</form>

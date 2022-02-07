@@ -1,0 +1,40 @@
+<div class="table-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Profile</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let data of allData$ | async">
+        <tr *ngIf="data.userid == userId">
+          <td class="user-profile">
+            <img src="{{ data.image }}" alt="" />
+          </td>
+          <td>{{ data["fname"] }}</td>
+          <td>{{ data["lname"] }}</td>
+          <td>{{ data["phone"] }}</td>
+          <td>
+            <button
+              mat-raised-button
+              (click)="openDialog(data.id)"
+              class="btn btn-warning btn-sm me-3"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteRecord(data.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

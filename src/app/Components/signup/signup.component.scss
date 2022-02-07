@@ -1,0 +1,29 @@
+.container{
+  height: 100vh;
+  .row {
+    height: inherit;
+    padding: 2em;
+    .signup_form {
+      .form-control {
+        padding: 0.2em 0.5em;
+      }
+      .signup_header {
+        img {
+          width: 10%;
+        }
+      }
+      .text-danger {
+        font-style: italic;
+      }
+      .btn {
+        width: 50%;
+      }
+    }
+    .vector_img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+}
